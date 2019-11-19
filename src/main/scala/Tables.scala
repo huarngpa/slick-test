@@ -35,3 +35,13 @@ class Coffees(tag: Tag)
   def supplier: ForeignKeyQuery[Suppliers, (Int, String, String, String, String, String)] = 
     foreignKey("SUP_FK", supID, TableQuery[Suppliers])(_.id)
 }
+
+case class Quote(symbol: String, price: Double, id: Option[Int] = None)
+
+class Quotes(tag: Tag) extends Table[Quote](tag, "quotes") {
+  def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
+  def name = column[String]("symbol")
+  def price = column[Double]("price")
+
+  def * = (name, price, id.?) <> (Quote.tupled, Quote.unapply)
+}

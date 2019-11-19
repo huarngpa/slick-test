@@ -4,6 +4,7 @@ target
 /project/typesafe.properties
 /project/activator-*
 /logs/
+/.metals
 /RUNNING_PID
 *.iml
 .DS_Store
